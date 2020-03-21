@@ -2,6 +2,8 @@ from tkinter import *
 
 import random
 
+import score_db as scr_db
+
 root = Tk()
 root.title("Rock, Paper, Scissor Game")
 width = 700
@@ -53,10 +55,9 @@ def save_window():
     enter.place(x = 280, y = 45)
 
 def save_player_name():
-    global e1, comp_score, player_score
+    global e1, player_score, comp_score
     player_name = e1.get()
-    print(e1.get())
-    print(player_score, comp_score)
+    scr_db.save_score(player_name, player_score, comp_score)
 
     
 
