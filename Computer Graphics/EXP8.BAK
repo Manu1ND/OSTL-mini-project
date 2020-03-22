@@ -6,18 +6,18 @@
 #define SIN(x) sin(x * 3.141592653589 / 180)
 #define COS(x) cos(x * 3.141592653589 / 180)
 
-int mat[N][N] = {{100, 200, 1},
-		     {150, 150, 1},
-		     {200, 200, 1}};
-int temp1[N][N],temp2[N][N];
-
+int mat[N][N] = {{100, 100, 1},
+    		     {300, 100, 1},
+    		     {150, 150, 1}};
+int temp1[N][N],temp2[N][N]; 
+    
 int res[N][N],trans[N][N],rot[N][N],scale[N][N];
 int i, j, sx, sy, tx, ty, x, choice, c1;
 
 int trans[N][N] = {{1, 0, 0},
 			       {0, 1, 0},
 			       {0, 0, 1}};
-
+			       
 int rot[N][N] = {{1, 0, 0},
 			     {0, 1, 0},
 			     {0, 0, 1}};
@@ -95,21 +95,21 @@ void main()
 	    DrawLine(mat);
 	    printf("\nEnter rotation  angle:");
 	    scanf("%d", &x);
-
-	    trans[2][0] = -150;
-	    trans[2][1] = -150;
+	    
+	    trans[2][0] = -300;
+	    trans[2][1] = -100;
 	    multiply(mat, trans, temp1);
-
+	    
 	    rot[0][0] = COS(x);
 	    rot[0][1] = SIN(x);
 	    rot[1][0] = -SIN(x);
 	    rot[1][1] = COS(x);
 	    multiply(temp1, rot, temp2);
-
-	    trans[2][0] = 150;
-	    trans[2][1] = 150;
+	    
+	    trans[2][0] = 300;
+	    trans[2][1] = 100;
 	    multiply(temp2, trans, res);
-
+	    
 		setcolor(RED);
 	    DrawLine(res);
 	    getch();
@@ -124,7 +124,7 @@ void main()
 	    scanf("%d%d", &sx, &sy);
 	    scale[0][0] = sx;
 	    scale[1][1] = sy;
-
+	    
 	    multiply(mat, scale, res);
 		setcolor(RED);
 	    DrawLine(res);
