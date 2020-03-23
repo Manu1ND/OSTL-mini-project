@@ -1,6 +1,7 @@
+import random
 from tkinter import *
 
-import random
+from tabulate import tabulate
 
 import score_db as scr_db
 
@@ -22,15 +23,34 @@ player_score = 0
 def score_window():
     window_score = Tk()
     window_score.title("Scores")
-    width = 570
-    height = 520
-    screen_width = window_score.winfo_screenwidth()
-    screen_height = window_score.winfo_screenheight()
+    width = 300
+    height = 250
     x = (screen_width/2) - (width/2)
     y = (screen_height/2) - (height/2)
     window_score.geometry("%dx%d+%d+%d" % (width, height, x, y))
-    window_score.resizable(0, 0)
+    #window_score.resizable(0, 0)
     window_score.config(bg="#99ff99")
+
+    database = r"python.sqlite"
+    conn = scr_db.create_connection(database)
+    cur = conn.cursor()
+    cur.execute('SELECT * FROM score')
+    data = cur.fetchall() # Gets the data from the table 
+
+    # frame = Frame(root)
+    # frame.place(x=250, y=100)
+    
+    Label(window_score, text='Sr No.').grid(row=0, column=1)
+    Label(window_score, text='Player Name').grid(row=0, column=3)
+    Label(window_score, text='Player Score').grid(row=0, column=5)
+    Label(window_score, text='Comp Score').grid(row=0, column=7)
+
+    for index, dat in enumerate(data):
+        Label(window_score, text=dat[0]).grid(row=index+2, column=1)
+        Label(window_score, text=dat[1]).grid(row=index+2, column=3)
+        Label(window_score, text=dat[2]).grid(row=index+2, column=5)
+        Label(window_score, text=dat[3]).grid(row=index+2, column=7)
+    conn.commit()
 
 def save_window():
     global e1
@@ -51,7 +71,7 @@ def save_window():
     lbl_player_name.config(bg="#99ff99")
     e1 = Entry(window_save)
     e1.place(x = 130, y = 50)
-    enter = Button(window_save, text="Save", command=save_player_name)
+    enter = Button(window_save, text="Save", command=save_player_name())
     enter.place(x = 280, y = 45)
 
 def save_player_name():
@@ -128,9 +148,8 @@ def MatchProcess(player_choice):
             lbl_player_score.config(text=player_score)
     
 
-def ExitApp():
-    root.destroy()
-    exit()
+def ExitApp(win):
+    win.quit()
 
 #===============================LABEL WIDGET=========================================
 player_img = Label(root,image=blank_img)
