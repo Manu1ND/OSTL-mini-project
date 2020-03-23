@@ -1,8 +1,6 @@
 import random
 from tkinter import *
 
-from tabulate import tabulate
-
 import score_db as scr_db
 
 root = Tk()
