@@ -64,7 +64,7 @@ def save_window():
     lbl_player_name.config(bg="#99ff99")
     e1 = Entry(window_save)
     e1.place(x = 130, y = 50)
-    enter = Button(window_save, text="Save", command=save_player_name())
+    enter = Button(window_save, text="Save", command=save_player_name)
     enter.place(x = 280, y = 45)
 
 def save_player_name():
