@@ -33,10 +33,7 @@ def score_window():
     conn = scr_db.create_connection(database)
     cur = conn.cursor()
     cur.execute('SELECT * FROM score')
-    data = cur.fetchall() # Gets the data from the table 
-
-    # frame = Frame(root)
-    # frame.place(x=250, y=100)
+    data = cur.fetchall() # Gets the data from the table
     
     Label(window_score, text='Sr No.').grid(row=0, column=1)
     Label(window_score, text='Player Name').grid(row=0, column=3)
@@ -56,8 +53,6 @@ def save_window():
     window_save.title("Save")
     width = 370
     height = 120
-    screen_width = window_save.winfo_screenwidth()
-    screen_height = window_save.winfo_screenheight()
     x = (screen_width/2) - (width/2)
     y = (screen_height/2) - (height/2)
     window_save.geometry("%dx%d+%d+%d" % (width, height, x, y))
