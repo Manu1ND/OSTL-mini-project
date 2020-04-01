@@ -3,22 +3,9 @@ from tkinter import *
 
 import score_db as scr_db
 
-root = Tk()
-root.title("Rock, Paper, Scissor Game")
-width = 700
-height = 520
-screen_width = root.winfo_screenwidth()
-screen_height = root.winfo_screenheight()
-x = (screen_width/2) - (width/2)
-y = (screen_height/2) - (height/2)
-root.geometry("%dx%d+%d+%d" % (width, height, x, y))
-root.resizable(0, 0)
-root.config(bg="#ffcc66")
-
-comp_score = 0
-player_score = 0
-
+#===============================Score===================================
 def score_window():
+    global window_score
     window_score = Tk()
     window_score.title("Scores")
     width = 300
@@ -39,6 +26,8 @@ def score_window():
     Label(window_score, text='Player Name').grid(row=0, column=3)
     Label(window_score, text='Player Score').grid(row=0, column=5)
     Label(window_score, text='Comp Score').grid(row=0, column=7)
+    exitwin = Button(window_score, text="Exit", command=exitScore)
+    exitwin.place(x=250, y=200)
 
     for index, dat in enumerate(data):
         Label(window_score, text=dat[0]).grid(row=index+2, column=1)
@@ -47,8 +36,14 @@ def score_window():
         Label(window_score, text=dat[3]).grid(row=index+2, column=7)
     conn.commit()
 
+def exitScore():
+    global window_score
+    window_score.destroy()
+
+
+#===============================Save===================================
 def save_window():
-    global e1
+    global e1, window_save
     window_save = Tk()
     window_save.title("Save")
     width = 370
@@ -68,11 +63,27 @@ def save_window():
     enter.place(x = 280, y = 45)
 
 def save_player_name():
-    global e1, player_score, comp_score
+    global e1, player_score, comp_score, window_save
     player_name = e1.get()
     scr_db.save_score(player_name, player_score, comp_score)
+    window_save.destroy()
 
-    
+
+#================================Main========================================
+root = Tk()
+root.title("Rock, Paper, Scissor Game")
+width = 700
+height = 520
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+x = (screen_width/2) - (width/2)
+y = (screen_height/2) - (height/2)
+root.geometry("%dx%d+%d+%d" % (width, height, x, y))
+root.resizable(0, 0)
+root.config(bg="#ffcc66")
+
+comp_score = 0
+player_score = 0
 
 
 #================================IMAGES========================================
@@ -141,8 +152,8 @@ def MatchProcess(player_choice):
             lbl_player_score.config(text=player_score)
     
 
-def ExitApp(win):
-    win.quit()
+def ExitWindow(win):
+    win.destroy()
 
 #===============================LABEL WIDGET=========================================
 player_img = Label(root,image=blank_img, relief=RAISED)
