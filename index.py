@@ -68,6 +68,15 @@ def save_player_name():
     scr_db.save_score(player_name, player_score, comp_score)
     window_save.destroy()
 
+def reset_window():
+    global comp_score, player_score
+    comp_score = 0
+    lbl_comp_score.config(text=comp_score)
+    player_score = 0
+    lbl_player_score.config(text=player_score)
+    lbl_status.config(text="")
+    comp_img.configure(image=blank_img)
+    player_img.configure(image=blank_img)
 
 #================================Main========================================
 root = Tk()
@@ -189,11 +198,14 @@ score = Button(root, text="Score", command=score_window)
 score.config(bg="#99ccff")
 save = Button(root, text="Save", command=save_window)
 save.config(bg="#99ccff")
+reset = Button(root, text="Reset", command=reset_window)
+reset.config(bg="#99ccff")
 rock.grid(row=4,column=1, pady=30)
 paper.grid(row=4,column=2, pady=30)
 scissor.grid(row=4,column=3, pady=30)
 score.grid(row=5, column=1)
 save.grid(row=5, column=3)
+reset.grid(row=1, column=2)
 
 
 #========================================INITIALIZATION===================================
