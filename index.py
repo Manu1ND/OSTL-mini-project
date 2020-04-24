@@ -98,14 +98,14 @@ player_score = 0
 #================================IMAGES========================================
 blank_img=PhotoImage(file="images/blank.png")
 player_rock=PhotoImage(file="images/player_rock.png")
-sm_player_rock=player_rock.subsample(3, 3)
 player_paper=PhotoImage(file="images/player_paper.png")
-sm_player_paper=player_paper.subsample(3, 3)
 player_scissor=PhotoImage(file="images/player_scissor.png")
-sm_player_scissor= player_scissor.subsample(3, 3)
 com_rock=PhotoImage(file="images/com_rock.png")
 com_paper=PhotoImage(file="images/com_paper.png")
 com_scissor=PhotoImage(file="images/com_scissor.png")
+sm_player_rock=PhotoImage(file="images/sm_player_rock.png").subsample(3, 3)
+sm_player_paper=PhotoImage(file="images/sm_player_paper.png").subsample(3, 3)
+sm_player_scissor=PhotoImage(file="images/sm_player_scissor.png").subsample(3, 3)
 
 
 
