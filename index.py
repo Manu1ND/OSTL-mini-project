@@ -191,9 +191,9 @@ lbl_made_by.grid(row=5, column=2)
 
 
 #===============================BUTTON WIDGET===================================
-rock = Button(root, image=sm_player_rock, command=Rock)
-paper = Button(root, image=sm_player_paper, command=Paper)
-scissor = Button(root, image=sm_player_scissor, command=Scissor)
+rock = Button(root, image=sm_player_rock, command=Rock, borderwidth=0, bg="#ffcc66")
+paper = Button(root, image=sm_player_paper, command=Paper, borderwidth=0, bg="#ffcc66")
+scissor = Button(root, image=sm_player_scissor, command=Scissor, borderwidth=0, bg="#ffcc66")
 score = Button(root, text="Score", command=score_window)
 score.config(bg="#99ccff")
 save = Button(root, text="Save", command=save_window)
